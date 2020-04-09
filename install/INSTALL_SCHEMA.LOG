@@ -1,0 +1,89 @@
+*********
+Username to create: mmf_2_10
+
+Path of datafile location: D:\oracle\oradata\ORCL\DATAFILE\
+
+Calling create_tablespace.sql for data tablespace
+*********
+mmf_2_10_DATA
+D:\oracle\oradata\ORCL\DATAFILE\mmf_2_10_DATA.dbf
+old   1: CREATE TABLESPACE  &&TABLESPACE_NAME
+new   1: CREATE TABLESPACE  mmf_2_10_DATA
+old   3:         '&&DATA_FILENAME' SIZE 10M AUTOEXTEND ON NEXT 10M MAXSIZE 10G
+new   3:         'D:\oracle\oradata\ORCL\DATAFILE\mmf_2_10_DATA.dbf' SIZE 10M AUTOEXTEND ON NEXT 10M MAXSIZE 10G
+
+Tablespace created.
+
+Elapsed: 00:00:00.68
+
+*********
+Calling create_user.sql
+*********
+Enter value for user_name: mmf_2_10
+
+Session altered.
+
+Elapsed: 00:00:00.00
+old   1: CREATE USER &&SCHEMA_NAME
+new   1: CREATE USER mmf_2_10
+old   2:   IDENTIFIED BY &&SCHEMA_PASSWORD
+new   2:   IDENTIFIED BY oracle
+old   3:   DEFAULT TABLESPACE &&DEFAULT_TBS
+new   3:   DEFAULT TABLESPACE mmf_2_10_DATA
+old   5:     QUOTA 20M on &&DEFAULT_TBS
+new   5:     QUOTA 20M on mmf_2_10_DATA
+
+User created.
+
+Elapsed: 00:00:00.02
+*********
+Calling grant.sql for mmf_2_10
+*********
+old   1: GRANT CREATE PROCEDURE TO &&SCHEMA_NAME
+new   1: GRANT CREATE PROCEDURE TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE SEQUENCE TO &&SCHEMA_NAME
+new   1: GRANT CREATE SEQUENCE TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE TABLE TO &&SCHEMA_NAME
+new   1: GRANT CREATE TABLE TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE TYPE TO &&SCHEMA_NAME
+new   1: GRANT CREATE TYPE TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE TRIGGER TO &&SCHEMA_NAME
+new   1: GRANT CREATE TRIGGER TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE SYNONYM TO &&SCHEMA_NAME
+new   1: GRANT CREATE SYNONYM TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE SESSION TO &&SCHEMA_NAME
+new   1: GRANT CREATE SESSION TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE ANY DIRECTORY TO &&SCHEMA_NAME
+new   1: GRANT CREATE ANY DIRECTORY TO mmf_2_10
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
