@@ -1,31 +1,36 @@
-DEFINE Products_count = select count(id) from Products
-DEFINE Prices_count = select count(id) from Prices
-DEFINE Prod_cell_lnk_count = select count(id) from prod_cell_lnk
-DEFINE Pack_types_count = select count(id) from Pack_types
-DEFINE Storages_count = select count(id) from Storages
-DEFINE Cells_count = select count(id) from Cells
-DEFINE Ships_count = select count(id) from Ships
-DEFINE Clients_count = select count(id) from Clients
-DEFINE Load_outs_count = select count(id) from Load_outs
-DEFINE Load_out_hst_count = select count(id) from Load_out_hst
-DEFINE Load_states_count = select count(id) from Load_states
+DECLARE
+	n_cnt NUMBER;
+BEGIN
+	SELECT count(*) into n_cnt from Products;
+	dbms_output.put_line('Products - rows: ' || n_cnt);
 
-PROMPT rows in Products: &&Products_count
-PROMPT Prices - rows: &&Prices_count
-PROMPT Prod_cell_lnk - rows: &&Prod_cell_lnk_count
-PROMPT Pack_types - rows: &&Pack_types_count
-PROMPT Storages - rows: &&Storages_count
-PROMPT Cells - rows: &&Cells_count
-PROMPT Ships - rows: &&Ships_count
-PROMPT Clients - rows: &&Clients_count
-PROMPT Load_outs - rows: &&Load_outs_count
-PROMPT Load_out_hst - rows: &&Load_out_hst_count
-PROMPT Load_states - rows: &&Load_states_count
+	SELECT count(*) into n_cnt from Prices;
+	dbms_output.put_line('Prices - rows: ' || n_cnt);
 
-UNDEFINE Storages_count
-UNDEFINE Cells_count
-UNDEFINE Ships_count
-UNDEFINE Clients_count
-UNDEFINE Load_outs_count
-UNDEFINE Load_out_hst_count
-UNDEFINE Load_states_count
+	SELECT count(*) into n_cnt from Prod_cell_lnk;
+	dbms_output.put_line('Prod_cell_lnk - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Pack_types;
+	dbms_output.put_line('Pack_types - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Storages;
+	dbms_output.put_line('Storages - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Cells;
+	dbms_output.put_line('Cells - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Ships;
+	dbms_output.put_line('Ships - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Clients;
+	dbms_output.put_line('Clients - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Load_outs;
+	dbms_output.put_line('Load_outs - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Load_out_hst;
+	dbms_output.put_line('Load_out_hst - rows: ' || n_cnt);
+
+	SELECT count(*) into n_cnt from Load_states;
+	dbms_output.put_line('Load_states - rows: ' || n_cnt);
+END;
