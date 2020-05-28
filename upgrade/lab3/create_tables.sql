@@ -5,6 +5,7 @@
 
 DEFINE SCHEMA_NAME = &&1
 DEFINE DATA_TBS_NAME = &&2
+DEFINE IDX_TABLESPACE = '&&SCHEMA_NAME._IDX_TABLESPACE'
 
 alter table &&SCHEMA_NAME.Cells
    drop constraint FK_CELLS_FK_CELLS__STORAGES;
@@ -373,42 +374,63 @@ comment on column &&SCHEMA_NAME.prod_cell_lnk.pack_type_id is
 alter table &&SCHEMA_NAME.Cells
    add constraint FK_CELLS_FK_CELLS__STORAGES foreign key (storage_id)
       references &&SCHEMA_NAME.Storages (id);
+create index FK_CELLS_FK_CELLS__STORAGES_IDX on &&SCHEMA_NAME.Cells(storage_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.Load_out_hst
    add constraint FK_LOAD_OUT_FK_LOAD_O_LOAD_OUT foreign key (id)
       references &&SCHEMA_NAME.Load_outs (id);
+create index FK_LOAD_OUT_FK_LOAD_O_LOAD_OUT_IDX on &&SCHEMA_NAME.Load_out_hst(id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.Load_out_hst
    add constraint FK_LOAD_OUT_FK_LOAD_O_LOAD_STA foreign key (load_state_id)
       references &&SCHEMA_NAME.Load_states (id);
+create index FK_LOAD_OUT_FK_LOAD_O_LOAD_STA_IDX on &&SCHEMA_NAME.Load_out_hst(load_state_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.Load_outs
    add constraint FK_LOAD_OUT_FK_LOAD_O_CLIENTS foreign key (client_id)
       references &&SCHEMA_NAME.Clients (id);
+create index FK_LOAD_OUT_FK_LOAD_O_CLIENTS_IDX on &&SCHEMA_NAME.Load_outs(client_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.Prices
    add constraint FK_PRICES_FK_PRICES_PRODUCTS foreign key (product_id)
       references &&SCHEMA_NAME.Products (id);
+create index FK_PRICES_FK_PRICES_PRODUCTS_IDX on &&SCHEMA_NAME.Prices(product_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.Ships
    add constraint FK_SHIPS_FK_SHIPS__CELLS foreign key (cell_id)
       references &&SCHEMA_NAME.Cells (id);
+create index FK_SHIPS_FK_SHIPS__CELLS_IDX on &&SCHEMA_NAME.Ships(cell_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.Ships
    add constraint FK_SHIPS_FK_SHIPS__LOAD_OUT foreign key (load_out_id)
       references &&SCHEMA_NAME.Load_outs (id);
+create index FK_SHIPS_FK_SHIPS__LOAD_OUT_IDX on &&SCHEMA_NAME.Ships(load_out_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.prod_cell_lnk
    add constraint FK_PROD_CEL_FK_PROD_C_CELLS foreign key (cell_id)
       references &&SCHEMA_NAME.Cells (id);
+create index FK_PROD_CEL_FK_PROD_C_CELLS_IDX on &&SCHEMA_NAME.prod_cell_lnk(cell_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.prod_cell_lnk
    add constraint FK_PROD_CEL_FK_PROD_C_PACK_TYP foreign key (pack_type_id)
       references &&SCHEMA_NAME.Pack_types (id);
+create index FK_PROD_CEL_FK_PROD_C_PACK_TYP_IDX on &&SCHEMA_NAME.prod_cell_lnk(pack_type_id) TABLESPACE &&IDX_TABLESPACE;
+
 
 alter table &&SCHEMA_NAME.prod_cell_lnk
    add constraint FK_PROD_CEL_FK_PROD_C_PRODUCTS foreign key (product_id)
       references &&SCHEMA_NAME.Products (id);
-	  
+create index FK_PROD_CEL_FK_PROD_C_PRODUCTS_IDX on &&SCHEMA_NAME.prod_cell_lnk(product_id) TABLESPACE &&IDX_TABLESPACE;
+
+
 UNDEFINE SCHEMA_NAME
 UNDEFINE DATA_TBS_NAME
+UNDEFINE IDX_TABLESPACE
