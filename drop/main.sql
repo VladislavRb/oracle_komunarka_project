@@ -1,27 +1,21 @@
 SET TIME ON
 SET TIMING ON
-
-PROMPT Enter username
-DEFINE USER_NAME = &&1
-PROMPT Enter tablespacename
-DEFINE TABLESPACE_NAME = &&2
-
 SPOOL DROP_SCHEMA.LOG
 
+DEFINE USER_NAME_ = &&1
 SET SERVEROUTPUT ON
-PROMPT Username caling to drop_user: &&USER_NAME
+
 PROMPT
-
-@drop_user.sql &&USER_NAME
-
-PROMPT Username caling to drop_tablspace: &&TABLESPACE_NAME
+PROMPT Username: &&USER_NAME_
 PROMPT
-
-@drop_tablespace.sql &&TABLESPACE_NAME
+PROMPT Dropping user
+@drop_user.sql &&USER_NAME_
+PROMPT
+PROMPT Dropping tablespace
+@drop_tablespace.sql &&USER_NAME_
+PROMPT
 
 SET SERVEROUTPUT OFF
-
-UNDEFINE USER_NAME
-UNDEFINE TABLESPACE_NAME
+UNDEFINE USER_NAME_
 
 SPOOL OFF

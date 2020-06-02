@@ -1,35 +1,38 @@
--- This file is main file to upgrade schema.
--- This file should be run under SYSTEM user.
---
--- Input: 1 - User name
--- Example of run: SQL> @main.sql MMF_120_0
-
 SET TIME ON
 SET TIMING ON
 SPOOL UPGRADE_SCHEMA.LOG
 
-PROMPT Enter username
-DEFINE USER_NAME = &&1
-PROMPT Enter tablespace name
-DEFINE TABLESPACE_NAME = &&2
+DEFINE USER_NAME_ = &&1
+connect &&USER_NAME_/oracle
 
 SET SERVEROUTPUT ON
-PROMPT Username to upgrade: &&USER_NAME
 
-connect &&USER_NAME/oracle 
--- Run our scripts
-
-PROMPT Calling create_tables started
-@create_tables.sql &&USER_NAME &&TABLESPACE_NAME
-PROMPT Calling create_tables finished
-
-PROMPT Calling insert_values started
-@insert_values.sql &&USER_NAME
-PROMPT Calling insert_values finished
+PROMPT Username: &&USER_NAME_
+PROMPT
+PROMPT Calling tables creating
+@table_folder/create_product.sql &&USER_NAME_ 
+@table_folder/create_nutritional_value.sql &&USER_NAME_ 
+@table_folder/create_ingredients.sql &&USER_NAME_ 
+@table_folder/create_box.sql &&USER_NAME_ 
+@table_folder/create_storage.sql &&USER_NAME_ 
+@table_folder/create_transport.sql &&USER_NAME_ 
+@table_folder/create_customer.sql &&USER_NAME_ 
+@table_folder/create_batch.sql &&USER_NAME_ 
+@table_folder/create_batch_content.sql &&USER_NAME_ 
+PROMPT
+PROMPT Calling insert scripts
+@insert_folder/insert_product.sql
+@insert_folder/insert_nutritional_value.sql
+@insert_folder/insert_ingredients.sql
+@insert_folder/insert_box.sql
+@insert_folder/insert_storage.sql
+@insert_folder/insert_transport.sql
+@insert_folder/insert_customer.sql
+@insert_folder/insert_batch.sql
+@insert_folder/insert_batch_content.sql
+PROMPT
 
 SET SERVEROUTPUT OFF
 
-UNDEFINE USER_NAME
-UNDEFINE TABLESPACE_NAME
-
+UNDEFINE USER_NAME_
 SPOOL OFF

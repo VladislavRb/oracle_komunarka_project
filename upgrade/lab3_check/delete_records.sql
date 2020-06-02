@@ -1,0 +1,13 @@
+SET SERVEROUTPUT ON
+
+DELETE FROM ingredients;
+DELETE FROM nutritional_value;
+DELETE FROM batch_content;
+DELETE FROM batch;
+DELETE FROM customer;
+DELETE FROM transport;
+DELETE FROM storage;
+DELETE FROM box;
+DELETE FROM product;
+
+SET SERVEROUTPUT OFF

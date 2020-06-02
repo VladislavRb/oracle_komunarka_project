@@ -1,46 +1,29 @@
 SET TIME ON
 SET TIMING ON
-SET APPINFO ON
-
-
-PROMPT Enter username
-DEFINE USER_NAME = &&1
-PROMPT Enter tablespace location
-DEFINE TBS_LOCATION =  &&2
-PROMPT Enter password
-DEFINE SCHEMA_PASSWORD = &&3
- 
 SPOOL INSTALL_SCHEMA.LOG
+
+DEFINE USER_NAME_ = &&1
+DEFINE TBS_LOCATION_ =  &&2
+
 SET SERVEROUTPUT ON
 
-PROMPT *********
-PROMPT Username to create: &&USER_NAME
 PROMPT
-PROMPT Path of datafile location: &&TBS_LOCATION
-PROMPT 
-
-PROMPT Calling create_tablespace.sql for data tablespace
-PROMPT *********
-@create_tablespace.sql &&USER_NAME &&TBS_LOCATION  
+PROMPT Username: &&USER_NAME_
+PROMPT Path: &&TBS_LOCATION_
 PROMPT
-
-PROMPT *********
-PROMPT Calling create_user.sql 
-PROMPT *********
-
-@create_user.sql &&USER_NAME &&SCHEMA_PASSWORD '&&USER_NAME._DATA' 
-
-PROMPT *********
-PROMPT Calling grant.sql for &&USER_NAME
-PROMPT *********
-
-@grants.sql &&USER_NAME
+PROMPT Calling data and index creating
+@create_tablespace.sql &&USER_NAME_ &&TBS_LOCATION_
+PROMPT
+PROMPT Calling user creation
+@create_user.sql &&USER_NAME_
+PROMPT
+PROMPT Giving grants to user
+@grants.sql &&USER_NAME_
+PROMPT
 
 SET SERVEROUTPUT OFF
 
-UNDEFINE USER_NAME;
-UNDEFINE TBS_LOCATION;
-UNDEFINE SCHEMA_PASSWORD;
-
+UNDEFINE USER_NAME_
+UNDEFINE TBS_LOCATION_
 
 SPOOL OFF

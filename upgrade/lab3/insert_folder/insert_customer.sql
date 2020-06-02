@@ -1,0 +1,6 @@
+SET SERVEROUTPUT ON
+
+INSERT INTO customer VALUES (DEFAULT, 'SOSEDI', 'address1');
+INSERT INTO customer VALUES (DEFAULT, 'Hillnov', 'address2');
+
+SET SERVEROUTPUT OFF
