@@ -11,10 +11,14 @@ CREATE TABLE product (
   energy_value NUMBER(10,5),
   shelf_life INT,
   price NUMBER(10,5),
+  fats NUMBER(10,5),
+  proteins NUMBER(10,5),
+  carbohydrates NUMBER(10,5),
+  cocoa NUMBER(10,5),
   CONSTRAINT pk_product PRIMARY KEY (product_id)
   USING INDEX (
       CREATE UNIQUE INDEX product_pk ON product (product_id ASC)
-	  TABLESPACE &&TABLESPACE_INDEX_NAME
+    TABLESPACE &&TABLESPACE_INDEX_NAME
   )
 )
 TABLESPACE &&TABLESPACE_NAME;
@@ -24,6 +28,12 @@ COMMENT ON COLUMN product.name IS 'Имя';
 COMMENT ON COLUMN product.weight IS 'Вес продукта';
 COMMENT ON COLUMN product.energy_value IS 'Энергетическая ценность(ккал/100г)';
 COMMENT ON COLUMN product.shelf_life IS 'Срок хранения(в днях)';
+COMMENT ON COLUMN product.price IS 'Цена продукта';
+COMMENT ON COLUMN product.fats IS 'Жиры';
+COMMENT ON COLUMN product.proteins IS 'Белки';
+COMMENT ON COLUMN product.carbohydrates IS 'Углеводы';
+COMMENT ON COLUMN product.cocoa IS 'Процент какао';
+
 
 SET SERVEROUTPUT OFF
 

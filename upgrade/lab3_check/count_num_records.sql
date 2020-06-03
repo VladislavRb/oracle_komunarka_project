@@ -22,9 +22,6 @@ WITH table_for_count AS (
     SELECT 'customer', COUNT(*) AS data_num
     FROM customer group by 'customer'
     UNION ALL
-    SELECT 'nutritional_value', COUNT(*) AS data_num
-    FROM nutritional_value group by 'nutritional_value'
-    UNION ALL
     SELECT 'ingredients', COUNT(*) AS data_num
     FROM ingredients group by 'ingredients'
 )

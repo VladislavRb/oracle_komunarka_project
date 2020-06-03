@@ -11,7 +11,6 @@ PROMPT Username: &&USER_NAME_
 PROMPT
 PROMPT Calling tables creating
 @table_folder/create_product.sql &&USER_NAME_ 
-@table_folder/create_nutritional_value.sql &&USER_NAME_ 
 @table_folder/create_ingredients.sql &&USER_NAME_ 
 @table_folder/create_box.sql &&USER_NAME_ 
 @table_folder/create_storage.sql &&USER_NAME_ 
@@ -22,7 +21,6 @@ PROMPT Calling tables creating
 PROMPT
 PROMPT Calling insert scripts
 @insert_folder/insert_product.sql
-@insert_folder/insert_nutritional_value.sql
 @insert_folder/insert_ingredients.sql
 @insert_folder/insert_box.sql
 @insert_folder/insert_storage.sql

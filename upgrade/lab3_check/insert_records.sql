@@ -2,17 +2,8 @@ SET SERVEROUTPUT ON
 
 
 
-INSERT INTO product(name, weight, energy_value, shelf_life, price)
-	SELECT DISTINCT product_name, product_weight, food_energy, shelf_life, product_price
-	FROM GoogleExcelTable;
-	
-
-INSERT INTO nutritional_value(fats, proteins, carbohydrates, cocoa, product_id)
-	SELECT DISTINCT fats, protein, carbonohydrates, cocoa, (
-			SELECT p.product_id
-			FROM product p
-			WHERE p.name = product_name AND p.price = product_price AND p.weight = product_weight
-		) AS id
+INSERT INTO product(name, weight, energy_value, shelf_life, price, fats, proteins, carbohydrates, cocoa)
+	SELECT DISTINCT product_name, product_weight, food_energy, shelf_life, product_price, fats, protein, carbonohydrates, cocoa
 	FROM GoogleExcelTable;
 	
 
